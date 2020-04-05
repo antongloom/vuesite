@@ -1,5 +1,6 @@
 <template lang="pug">
   div.registaration
+    div(v-if="true").info-error dvsdv
     Form(@userAuth = "onSubmit" :info="text")  
 </template>
 
@@ -11,6 +12,7 @@ export default {
   name: 'Registration',
   data() {
     return {
+      error: false,
       text: {
         title: 'Форма авторизации',
         btn: 'Войти в кабинет',
@@ -44,3 +46,21 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+    .registaration{
+        position: relative;
+    }
+    .info-error{
+        width: 100%;
+        background: rgba(255, 0, 0, 0.7);
+        color: #000;
+        padding: 15px;
+        box-sizing: border-box;
+        line-height: 30px;
+        border-radius: 7px;
+        font-size: 20px;
+        position: absolute;
+        top: 0px;
+    }
+</style>

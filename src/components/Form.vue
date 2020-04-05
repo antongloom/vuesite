@@ -91,3 +91,9 @@ export default {
 	}
 }
 </script>
+
+<style lang="less">
+	.form {
+		padding-top: 70px;
+	}
+</style>
