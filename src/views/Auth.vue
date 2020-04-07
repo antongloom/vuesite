@@ -1,6 +1,6 @@
 <template lang="pug">
   div.registaration
-    div(v-if="true").info-error dvsdv
+    div(v-if="!errorExisit").info-error {{errorText}}
     Form(@userAuth = "onSubmit" :info="text")  
 </template>
 
@@ -12,7 +12,8 @@ export default {
   name: 'Registration',
   data() {
     return {
-      error: false,
+      errorExisit: true,
+      errorText: '',
       text: {
         title: 'Форма авторизации',
         btn: 'Войти в кабинет',
@@ -36,9 +37,15 @@ export default {
             } */
             //res.data.token
            // res.data.user
-           console.log(res)
-           localStorage.setItem('token', res.data.token)
-           localStorage.setItem('user', JSON.stringify(res.data.user))
+           if(res.data.token){
+             localStorage.setItem('token', res.data.token)
+             localStorage.setItem('user', JSON.stringify(res.data.user))
+             this.$router.push('/dashboard')
+           } else {
+             this.errorExisit = res.data.success
+             this.errorText = res.data.msg
+             setTimeout(()=>{this.errorExisit = true}, 3000) 
+           }
         } catch(error) {
           console.log(error)
         }

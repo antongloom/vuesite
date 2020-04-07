@@ -27,7 +27,7 @@ export default {
         try {
           const res = await axios.post('http://localhost:3000/account/reg', user);
             if(res.data.success){
-              this.$router.push('/auth')
+              this.$router.push('/dashboard')
             } else {
               console.log(res.data.msg)
             } 
